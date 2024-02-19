@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material3.Icon
@@ -20,12 +22,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.rescue4x4.ui.theme.Rescue4x4Theme
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.rescue4x4.ui.theme.Rescue4x4Theme
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Warning
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,42 +47,48 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    val locationInfo = LocationData(46.77238770, 24.66945610)
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = "Map") {
-                        composable("Map") { MapScreen() }
-                        composable("SOS") { SOSScreen() }
-                        composable("More") { MoreScreen() }
-                    }
-                    NavigationBarTest(navController)
+                   Column(modifier = Modifier.fillMaxSize()
+                    ) {
+                       NavigationBarTest(navController = navController)
+                       NavHost(navController = navController, startDestination = "Map") {
+                           composable("Map") { MapScreen(location = locationInfo) }
+                           composable("SOS") { SOSScreen() }
+                           composable("More") { MoreScreen() }
+                       }
+                   }
                 }
             }
         }
     }
 }
 
+data class NavigationItem(val label: String, val icon: ImageVector)
 
 @Composable
 fun NavigationBarTest(navController: NavController){
     var selectedItem by remember { mutableStateOf("Map") }
-    val items = listOf("Map", "SOS", "More")
+    val items = listOf(
+        NavigationItem("Map", Icons.Filled.LocationOn),
+        NavigationItem("SOS", Icons.Filled.Call),
+        NavigationItem("More", Icons.Filled.Menu)
+    )
 
 
-
-    Column(
-        verticalArrangement = Arrangement.Bottom
-    ){
+    Column(verticalArrangement = Arrangement.Bottom) {
         NavigationBar {
             items.forEach {item ->
-                val selected = selectedItem == item
+                val selected = selectedItem == item.label
                 NavigationBarItem(
-                    icon = { Icon(Icons.Filled.AccountCircle, contentDescription = item) },
-                    label = { Text(item) },
+                    icon = { Icon(item.icon, contentDescription = item.label) },
+                    label = { Text(item.label) },
                     selected = selected,
                     onClick = {
-                        selectedItem = item
-                        navController.navigate(item)
-                              }
-                    )
+                        selectedItem = item.label
+                        navController.navigate(item.label)
+                    }
+                )
             }
         }
     }
