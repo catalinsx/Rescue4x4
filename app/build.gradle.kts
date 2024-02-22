@@ -60,7 +60,11 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-
+    implementation("com.google.android.gms:play-services-location:21.1.0")
+    implementation("com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1")
+    implementation("com.google.dagger:hilt-android-gradle-plugin:2.42")
+    implementation("com.google.maps.android:maps-compose-widgets:2.11.4")
+    implementation ("com.google.maps.android:maps-compose-utils:2.11.4")
 
 
     implementation("androidx.core:core-ktx:1.12.0")
