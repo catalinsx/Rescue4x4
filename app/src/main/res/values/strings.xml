@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Rescue4x4</string>
+    <string name="title">When to call? </string>
+    <string name="paragraph"> It\'s important to know when to make an emergency call. If you find yourself in a life-threatening situation, such as a medical emergency or a fire, call 112 immediately. This number connects you to emergency services, including police, fire, and medical assistance. </string>
+    <string name="secondparagraph"> However, if you\'re not in immediate danger but still need help, consider calling a trusted friend or a family member. They can offer support and assistance until further help arrives. </string>
 </resources>
 
