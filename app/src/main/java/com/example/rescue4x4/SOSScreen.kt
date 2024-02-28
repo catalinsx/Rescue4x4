@@ -8,6 +8,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.rememberScrollableState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,7 +18,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Warning
@@ -67,7 +70,8 @@ fun SOSScreen(currentLocation: LatLng) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = MaterialTheme.colorScheme.surface),
+            .background(color = MaterialTheme.colorScheme.surface)
+            .verticalScroll(rememberScrollState()),
        horizontalAlignment = Alignment.CenterHorizontally,
        // verticalArrangement = Arrangement.Center
     ) {
@@ -123,13 +127,14 @@ fun SOSScreen(currentLocation: LatLng) {
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 Image(
-                    painter = painterResource(R.drawable.emergency_call),
+                    painter = painterResource(R.drawable.emergency),
                     contentDescription = "",
                     contentScale = ContentScale.Fit,
                     modifier = Modifier
                         .clip(RoundedCornerShape(16.dp))
                         .size(170.dp)
                         .padding(20.dp)
+
                 )
             }
 
@@ -150,7 +155,7 @@ fun SOSScreen(currentLocation: LatLng) {
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 Image(
-                    painter = painterResource(R.drawable.add_contact),
+                    painter = painterResource(R.drawable.contact),
                     contentDescription = "",
                     contentScale = ContentScale.Fit,
                     modifier = Modifier

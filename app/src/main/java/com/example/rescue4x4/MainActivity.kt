@@ -11,10 +11,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -22,26 +28,45 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.layout
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.rescue4x4.ui.theme.Rescue4x4Theme
+import com.example.rescue4x4.weatherFiles.Const.Companion.colorBg1
+import com.example.rescue4x4.weatherFiles.Const.Companion.colorBg2
+import com.example.rescue4x4.weatherFiles.Const.Companion.permissions
+import com.example.rescue4x4.weatherFiles.viewmodel.MainViewModel
+import com.example.rescue4x4.weatherFiles.viewmodel.STATE
+import com.example.rescue4x4.weatherFiles.views.ForecastSection
+import com.example.rescue4x4.weatherFiles.views.WeatherSection
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.CameraPositionState
@@ -52,6 +77,8 @@ import com.google.maps.android.compose.MapUiSettings
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 
 open class MainActivity : ComponentActivity() {
@@ -59,6 +86,7 @@ open class MainActivity : ComponentActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationCallBack: LocationCallback
     private var locationRequired: Boolean = false
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onResume() {
         super.onResume()
@@ -97,8 +125,8 @@ open class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
+        initLocationClient()
+        initViewModel()
 
         setContent {
             var currentLocation by remember { mutableStateOf(LatLng(0.0, 0.0)) }
@@ -128,35 +156,42 @@ open class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "Map") {
+
                         composable("Map") {
                             LocationScreen(
                                 context = this@MainActivity,
                                 currentLocation = currentLocation,
                                 cameraPositionState = cameraPositionState
                             )
-                            NavigationBarTest(navController = navController)
-
                         }
-                        composable("SOS") {
-                            SOSScreen(currentLocation)
-                            NavigationBarTest(navController = navController)
-                        }
-                        composable("More") {
-                            MoreScreen()
-                            NavigationBarTest(navController = navController)
+                        composable("SOS") { SOSScreen(currentLocation) }
+                        composable("More") { MoreScreen(navController) }
+                        composable("Weather"){
+                            WeatherForm(context = this@MainActivity, currentLocation = currentLocation)
                         }
                     }
-
+                    NavigationBarTest(navController = navController)
                 }
             }
         }
     }
 
+    private fun fetchWeatherInformation(mainViewModel: MainViewModel, currentLocation: LatLng) {
+        mainViewModel.state = STATE.LOADING
+        mainViewModel.getWeatherByLocation(currentLocation)
+        mainViewModel.getForecastByLocation(currentLocation)
+        mainViewModel.state = STATE.SUCCESS
+    }
 
-    private val permissions = arrayOf(
-        Manifest.permission.ACCESS_COARSE_LOCATION,
-        Manifest.permission.ACCESS_FINE_LOCATION,
-    )
+    private fun initViewModel() {
+        mainViewModel = ViewModelProvider(this@MainActivity)[MainViewModel::class.java]
+    }
+
+    private fun initLocationClient() {
+        fusedLocationClient = LocationServices
+            .getFusedLocationProviderClient(this)
+    }
+
 
     @Composable
     fun LocationScreen(
@@ -165,6 +200,7 @@ open class MainActivity : ComponentActivity() {
         cameraPositionState: CameraPositionState,
     ) {
 
+        val coroutineScope = rememberCoroutineScope()
         val uiSettings by remember { mutableStateOf(MapUiSettings(zoomControlsEnabled = false)) }
         var properties by remember { mutableStateOf(MapProperties(mapType = MapType.NORMAL)) }
         var isSatelliteViewEnabled by remember { mutableStateOf(false) }
@@ -187,7 +223,7 @@ open class MainActivity : ComponentActivity() {
             if (!mapLoaded) {
                 LinearProgressIndicator(
                     modifier = Modifier.fillMaxWidth(),
-                    color = MaterialTheme.colorScheme.primary,
+                    color =Color(colorBg2),
                 )
             }
             Box(modifier = Modifier.fillMaxSize()) {
@@ -211,9 +247,7 @@ open class MainActivity : ComponentActivity() {
 
                     }
                 ) {
-                    Marker(
-                        state = MarkerState(position = currentLocation)
-                    )
+                    Marker(state = MarkerState(position = currentLocation))
                 }
                 Column {
 
@@ -245,6 +279,121 @@ open class MainActivity : ComponentActivity() {
                     )
                 }
             }
+        }
+    }
+
+    @Composable
+    fun WeatherForm(context: Context, currentLocation: LatLng ) {
+
+        var weatherFetched by remember { mutableStateOf(false) }
+
+        val launcherMultiplePermissions = rememberLauncherForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissionMaps ->
+            val areGranted = permissionMaps.values.reduce { acc, next -> acc && next }
+            if (areGranted) {
+                locationRequired = true
+                startLocationUpdates()
+                Toast.makeText(context, "Permission Granted", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Permission Denied", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        val systemUiController = rememberSystemUiController()
+        DisposableEffect(key1 = true, effect = {
+            systemUiController.isSystemBarsVisible = false //hide status bar
+            onDispose {
+                systemUiController.isSystemBarsVisible = true // show status bar
+            }
+        })
+        LaunchedEffect(key1 = currentLocation, block = {
+            coroutineScope {
+                if (permissions.all{
+                        ContextCompat.checkSelfPermission(context, it) ==PackageManager.PERMISSION_GRANTED
+                    }){
+                    startLocationUpdates()
+                }else{
+                    launcherMultiplePermissions.launch(permissions)
+                }
+            }
+        })
+
+        LaunchedEffect(key1 = true, block = {
+            if (!weatherFetched) {
+                fetchWeatherInformation(mainViewModel, currentLocation)
+                weatherFetched = true
+            }
+        })
+
+        val gradient = Brush.linearGradient(
+            colors = listOf(Color(colorBg1), Color(colorBg2)),
+            start = Offset(1000f, -1000f),
+            end = Offset(1000f, 1000f)
+        )
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(gradient),
+        ){
+            val screenHeight = LocalConfiguration.current.screenHeightDp.dp
+            val marginTop = screenHeight * 0.1f
+            val marginTopPx = with(LocalDensity.current) {marginTop.toPx()}
+
+            Column(
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+                    .layout { measurable, constraints ->
+                        val placeable = measurable.measure(constraints)
+
+                        // define the layout for child
+
+                        layout(
+                            placeable.width,
+                            placeable.height + marginTopPx.toInt()
+                        ) {
+                            placeable.placeRelative(0, marginTopPx.toInt())
+                        }
+                    },
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                when (mainViewModel.state) {
+                    STATE.LOADING -> {
+                        LoadingSection()
+                    }
+                    STATE.FAILED -> {
+                        ErrorSection(mainViewModel.errorMessage)
+                    }
+                    else -> {
+                        WeatherSection(mainViewModel.weatherResponse)
+                        ForecastSection(mainViewModel.forecastResponse)
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun ErrorSection(errorMessage: String) {
+        return Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(text = errorMessage, color = Color.White)
+        }
+    }
+
+    @Composable
+    fun LoadingSection() {
+        return Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            CircularProgressIndicator(color = Color.White)
         }
     }
 }

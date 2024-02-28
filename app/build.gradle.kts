@@ -66,6 +66,15 @@ dependencies {
     implementation("com.google.maps.android:maps-compose-widgets:2.11.4")
     implementation ("com.google.maps.android:maps-compose-utils:2.11.4")
 
+    //convert api
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
+    //loading network image
+    implementation("io.coil-kt:coil-compose:2.4.0")
+    // awesome font
+    implementation("com.github.Gurupreet:FontAwesomeCompose:1.0.0")
+    // full layout without status bar
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.33.1-alpha")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
