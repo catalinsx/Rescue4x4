@@ -1,5 +1,8 @@
 package com.example.rescue4x4.weatherFiles
 
+import com.example.rescue4x4.R
+import com.example.rescue4x4.diagnosis.FAQItem
+
 class Const {
     companion object{
         val permissions = arrayOf(
@@ -14,5 +17,8 @@ class Const {
 
         const val LOADING = "Loading..."
         const val NA = "N/A"
+
+
+
     }
 }

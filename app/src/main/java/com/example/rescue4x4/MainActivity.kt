@@ -1,6 +1,5 @@
 package com.example.rescue4x4
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
@@ -12,15 +11,18 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -33,7 +35,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -44,13 +45,14 @@ import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.rescue4x4.askforhelp.AskForHelp
+import com.example.rescue4x4.diagnosis.FAQScreen
 import com.example.rescue4x4.ui.theme.Rescue4x4Theme
 import com.example.rescue4x4.weatherFiles.Const.Companion.colorBg1
 import com.example.rescue4x4.weatherFiles.Const.Companion.colorBg2
@@ -66,7 +68,6 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.CameraPositionState
@@ -77,8 +78,8 @@ import com.google.maps.android.compose.MapUiSettings
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
+import com.google.maps.android.compose.widgets.ScaleBar
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 
 
 open class MainActivity : ComponentActivity() {
@@ -123,17 +124,17 @@ open class MainActivity : ComponentActivity() {
         }
     }
 
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initLocationClient()
         initViewModel()
-
         setContent {
             var currentLocation by remember { mutableStateOf(LatLng(0.0, 0.0)) }
-            val cameraPostition = rememberCameraPositionState {
+            val cameraPositionState: CameraPositionState = rememberCameraPositionState {
                 position = CameraPosition.fromLatLngZoom(currentLocation, 10f)
             }
-            val cameraPositionState by remember { mutableStateOf(cameraPostition) }
+
 
 
             locationCallBack = object : LocationCallback() {
@@ -155,22 +156,30 @@ open class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = "Map") {
 
-                        composable("Map") {
-                            LocationScreen(
-                                context = this@MainActivity,
-                                currentLocation = currentLocation,
-                                cameraPositionState = cameraPositionState
-                            )
+                    Column {
+                        NavHost(
+                            navController = navController,
+                            startDestination = "Map",
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            composable("Map") {
+                                LocationScreen(
+                                    context = this@MainActivity,
+                                    currentLocation = currentLocation,
+                                    cameraPositionState = cameraPositionState
+                                )
+                            }
+                            composable("SOS") { SOSScreen(currentLocation) }
+                            composable("More") { MoreScreen(navController) }
+                            composable("Weather") {
+                                WeatherForm(context = this@MainActivity, currentLocation = currentLocation)
+                            }
+                            composable("Diagnosis") { FAQScreen() }
+                            composable("AskForHelp") { AskForHelp(currentLocation, this@MainActivity) }
                         }
-                        composable("SOS") { SOSScreen(currentLocation) }
-                        composable("More") { MoreScreen(navController) }
-                        composable("Weather"){
-                            WeatherForm(context = this@MainActivity, currentLocation = currentLocation)
-                        }
+                        NavigationBarTest(navController = navController)
                     }
-                    NavigationBarTest(navController = navController)
                 }
             }
         }
@@ -199,12 +208,11 @@ open class MainActivity : ComponentActivity() {
         currentLocation: LatLng,
         cameraPositionState: CameraPositionState,
     ) {
-
-        val coroutineScope = rememberCoroutineScope()
         val uiSettings by remember { mutableStateOf(MapUiSettings(zoomControlsEnabled = false)) }
         var properties by remember { mutableStateOf(MapProperties(mapType = MapType.NORMAL)) }
         var isSatelliteViewEnabled by remember { mutableStateOf(false) }
         var mapLoaded by remember { mutableStateOf(false) }
+
 
         val launcherMultiplePermissions = rememberLauncherForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()
@@ -249,33 +257,45 @@ open class MainActivity : ComponentActivity() {
                 ) {
                     Marker(state = MarkerState(position = currentLocation))
                 }
-                Column {
-
-                    Text(
-                        modifier = Modifier.padding(start = 8.dp, top = 8.dp, end = 8.dp),
-                        text = "Satellite Mode",
-                        color = if (isSatelliteViewEnabled) Color.White else MaterialTheme.colorScheme.surface,
-                        fontStyle = FontStyle.Italic
-                    )
-                    Switch(
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Column {
+                        Text(
+                            modifier = Modifier.padding(start = 8.dp, top = 8.dp, end = 8.dp),
+                            text = "Satellite Mode",
+                            color = if (isSatelliteViewEnabled) Color.White else MaterialTheme.colorScheme.surface,
+                            fontStyle = FontStyle.Italic
+                        )
+                        Switch(
+                            modifier = Modifier
+                                .padding(start = 8.dp, top = 0.dp),
+                            checked = isSatelliteViewEnabled,
+                            onCheckedChange = {
+                                isSatelliteViewEnabled = it
+                                properties =
+                                    properties.copy(mapType = if (it) MapType.SATELLITE else MapType.NORMAL)
+                            },
+                            thumbContent = {
+                                Icon(
+                                    imageVector = if(isSatelliteViewEnabled){
+                                        Icons.Default.Check
+                                    }else{
+                                        Icons.Default.Close
+                                    },
+                                    contentDescription = null
+                                )
+                            }
+                        )
+                    }
+                    ScaleBar(
+                        cameraPositionState = cameraPositionState,
                         modifier = Modifier
-                            .padding(start = 8.dp, top = 0.dp),
-                        checked = isSatelliteViewEnabled,
-                        onCheckedChange = {
-                            isSatelliteViewEnabled = it
-                            properties =
-                                properties.copy(mapType = if (it) MapType.SATELLITE else MapType.NORMAL)
-                        },
-                        thumbContent = {
-                            Icon(
-                                imageVector = if(isSatelliteViewEnabled){
-                                    Icons.Default.Check
-                                }else{
-                                    Icons.Default.Close
-                                },
-                                contentDescription = null
-                            )
-                        }
+                            .align(Alignment.End)
+                            .padding(8.dp),
+                        textColor =  if (isSatelliteViewEnabled) Color.White else MaterialTheme.colorScheme.surface,
+                        lineColor =  if (isSatelliteViewEnabled) Color.White else MaterialTheme.colorScheme.surface
                     )
                 }
             }
@@ -396,12 +416,4 @@ open class MainActivity : ComponentActivity() {
             CircularProgressIndicator(color = Color.White)
         }
     }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun NavigationPreview(){
-    val navController = rememberNavController()
-    NavigationBarTest(navController)
 }

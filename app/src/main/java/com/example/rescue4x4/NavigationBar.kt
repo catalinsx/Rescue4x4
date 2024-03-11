@@ -1,9 +1,7 @@
 package com.example.rescue4x4
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.LocationOn
@@ -19,23 +17,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 
 data class NavigationItem(val label: String, val icon: ImageVector)
 
 @Composable
-fun NavigationBarTest(navController: NavController){
-    var selectedItem by remember { mutableStateOf("") }
+fun NavigationBarTest(
+    navController: NavController
+){
+    var selectedItem by remember { mutableStateOf("Map") }
     val items = listOf(
         NavigationItem("Map", Icons.Filled.LocationOn),
         NavigationItem("SOS", Icons.Filled.Call),
         NavigationItem("More", Icons.Filled.Menu)
     )
 
-    Column(verticalArrangement = Arrangement.Bottom,
-        modifier = Modifier.zIndex(1f)) {
+    Column(modifier = Modifier.fillMaxWidth()) {
         NavigationBar {
             items.forEach {item ->
                 val selected = selectedItem == item.label

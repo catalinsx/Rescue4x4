@@ -1,7 +1,82 @@
 <resources>
     <string name="app_name">Rescue4x4</string>
+
+    <string name="information1">
+Specify the make and type of the vehicle, the weight of the goods (if the vehicle is loaded), whether or not you have a towing hook, information about the terrain (mud, dry, snow, etc.) or the place where the vehicle is blocked, as well as other information you consider relevant
+    </string>
+
+    <string name="information2">
+        Specify the problem encountered, what kind of help you request, the place and how to find the vehicle as well as other relevant information so that our team can better evaluate your situation
+    </string>
+
+    <string name ="askforhelpheader">
+        This system is not an emergency system. If the situation is urgent, call 112!
+This page is addressed to those who need assistance from us, quick response time not being guaranteed
+    </string>
+
     <string name="title">When to call? </string>
-    <string name="paragraph"> It\'s important to know when to make an emergency call. If you find yourself in a life-threatening situation, such as a medical emergency or a fire, call 112 immediately. This number connects you to emergency services, including police, fire, and medical assistance. </string>
-    <string name="secondparagraph"> However, if you\'re not in immediate danger but still need help, consider calling a trusted friend or a family member. They can offer support and assistance until further help arrives. </string>
+    <string name="paragraph"> It\'s important to know when to make an emergency call. If you find yourself in a life-threatening situation, such as a medical emergency or a fire, call 112 immediately. This number connects you to emergency services, including police, fire, and medical assistance. However, if you\'re not in immediate danger but still need help, consider calling a trusted friend or a family member. They can offer support and assistance until further help arrives. In critical situations, activating the SOS button can also alert your designated contact about your location for immediate assistance. </string>
+
+
+    <string name="faq_question_1">De ce se aude un zgomot puternic de la trenul de rulare?</string>
+    <string name="faq_answer_1">Zgomotul puternic poate fi cauzat de lovituri sau daune la componentele trenului de rulare, cum ar fi articulațiile cu sferă, rulmenții sau barele stabilizatoare.</string>
+
+    <string name="faq_question_2">De ce se simte o vibrație puternică la viteze mari?</string>
+    <string name="faq_answer_2">Vibrația puternică poate fi rezultatul dezechilibrului roților, deteriorării roților sau a suspensiilor, sau a uzurii articulațiilor sau rulmenților.</string>
+
+    <string name="faq_question_3">De ce se aprinde lumina de avertizare a motorului?</string>
+    <string name="faq_answer_3">Aprinderea lumii de avertizare a motorului poate indica o gamă largă de probleme, inclusiv defecțiuni ale sistemului de alimentare cu combustibil, probleme la sistemul de aprindere sau emisii excesive de gaze de eșapament.</string>
+
+    <string name="faq_question_4">Ce trebuie să fac dacă scade presiunea uleiului?</string>
+    <string name="faq_answer_4">Scăderea presiunii uleiului poate indica o scurgere de ulei, uzura sau blocarea filtrelor de ulei, sau un nivel scăzut de ulei. Este esențial să opriți imediat motorul și să verificați nivelul și calitatea uleiului.</string>
+
+    <string name="faq_question_5">De ce nu mai funcționează sistemul de direcție a mașinii?</string>
+    <string name="faq_answer_5">Defectele în sistemul de direcție pot fi cauzate de pierderea lichidului de direcție asistată, uzura sau deteriorarea pompei de direcție asistată, sau probleme cu barele de direcție sau articulațiile direcției.</string>
+
+    <string name="faq_question_6">De ce se simte mașina că pierde puterea la accelerare?</string>
+    <string name="faq_answer_6">Pierderea puterii la accelerare poate fi cauzată de mai multe probleme, inclusiv un filtru de aer murdar, o presiune scăzută a combustibilului, injecție incorectă de combustibil sau o defecțiune a sistemului de aprindere.</string>
+
+    <string name="faq_question_7">Ce provoacă fisuri sau deteriorări ale carcasei motorului?</string>
+    <string name="faq_answer_7">Fisurile sau deteriorările carcasei motorului pot fi cauzate de supraîncălzirea motorului, presiunea crescută în cilindri sau defecte în blocul motor, cum ar fi fisuri de stres sau defecte de turnare.</string>
+
+    <string name="faq_question_8">De ce se aud bătăi sau zgomote metalice sub mașină?</string>
+    <string name="faq_answer_8">Bătăile sau zgomotele metalice pot fi cauzate de componente slabe ale suspensiei, precum bară stabilizatoare ruptă sau articulații cu sferă uzate, sau de obiecte străine care bat de partea de jos a mașinii.</string>
+
+    <string name="faq_question_9">Ce trebuie să fac dacă se aprinde lumina de avertizare a sistemului de frânare?</string>
+    <string name="faq_answer_9">Aprinderea lumii de avertizare a sistemului de frânare poate indica uzura plăcuțelor de frână, scurgerea lichidului de frână, defecte în sistemul de frânare sau blocarea etrierelor de frână.</string>
+
+    <string name="faq_question_10">De ce se simte o miros urât sau de fum din compartimentul motor?</string>
+    <string name="faq_answer_10">Mirosul urât sau de fum din compartimentul motor poate indica o scurgere de lichid de răcire, un ulei ars, sau chiar un incendiu în compartimentul motor. Este esențial să opriți imediat motorul și să investigați cauza.</string>
+
+    <string name="faq_question_11">Ce cauzează o cădere bruscă a nivelului lichidului de răcire?</string>
+    <string name="faq_answer_11">Căderea bruscă a nivelului lichidului de răcire poate fi cauzată de o scurgere de lichid de răcire din radiator, furtunuri de răcire sparte, sau defecte ale pompei de apă.</string>
+
+    <string name="faq_question_12">De ce se aprinde lumina de avertizare a airbag-urilor?</string>
+    <string name="faq_answer_12">Aprinderea lumii de avertizare a airbag-urilor poate indica o problemă cu sistemul de airbaguri, inclusiv senzori defectuoși, cabluri rupte sau module de control defecte.</string>
+
+    <string name="faq_question_13">Ce trebuie să fac dacă se aprinde lumina de avertizare a presiunii uleiului?</string>
+    <string name="faq_answer_13">Aprinderea lumii de avertizare a presiunii uleiului poate indica o scădere a presiunii uleiului în motor, ceea ce poate fi cauzată de o scurgere de ulei, uzura sau blocarea filtrelor de ulei, sau o pompă de ulei defectă.</string>
+
+    <string name="faq_question_14">De ce se aud sunete ciudate la schimbarea treptelor de viteză?</string>
+    <string name="faq_answer_14">Sunetele ciudate la schimbarea treptelor de viteză pot fi cauzate de ambreiaj uzat, sincronizatoare defecte sau ulei de transmisie contaminat.</string>
+
+    <string name="faq_question_15">Ce trebuie să fac dacă se simte o miros urât sau de fum în habitaclu?</string>
+    <string name="faq_answer_15">Mirosul urât sau de fum în habitaclu poate fi cauzat de o scurgere de lichid de răcire, un sistem de încălzire sau de aer condiționat defect, sau obiecte străine arse în sistemul de ventilație.</string>
+
+    <string name="faq_question_16">De ce se aprinde lumina de avertizare a ABS-ului?</string>
+    <string name="faq_answer_16">Aprinderea lumii de avertizare a ABS-ului poate indica probleme cu sistemul de frânare antiblocare, inclusiv senzori de roți defectuoși, cabluri rupte sau module de control ABS defecte.</string>
+
+    <string name="faq_question_17">Ce cauzează o scădere a presiunii uleiului la viteze mari?</string>
+    <string name="faq_answer_17">Scăderea presiunii uleiului la viteze mari poate fi cauzată de o scurgere de ulei la garniturile supapei, de uzura sau blocarea filtrelor de ulei, sau de o pompă de ulei defectă.</string>
+
+    <string name="faq_question_18">De ce se aprinde lumina de avertizare a controlului tracțiunii?</string>
+    <string name="faq_answer_18">Aprinderea lumii de avertizare a controlului tracțiunii poate indica probleme cu sistemul de control al tracțiunii, inclusiv senzori de roți defectuoși, cabluri rupte sau module de control tracțiune defecte.</string>
+
+    <string name="faq_question_19">Ce trebuie să fac dacă mașina este greu de pornit dimineața?</string>
+    <string name="faq_answer_19">Dificultățile la pornirea mașinii dimineața pot fi cauzate de o baterie descărcată, un demaror uzat sau injectoare de combustibil înfundate.</string>
+
+    <string name="faq_question_20">De ce se aprinde lumina de avertizare a sistemului de monitorizare a presiunii pneurilor?</string>
+    <string name="faq_answer_20">Aprinderea lumii de avertizare a sistemului de monitorizare a presiunii pneurilor poate indica presiunea pneurilor sub sau peste limita recomandată, sau probleme cu senzorii de presiune a pneurilor.</string>
+
 </resources>
 

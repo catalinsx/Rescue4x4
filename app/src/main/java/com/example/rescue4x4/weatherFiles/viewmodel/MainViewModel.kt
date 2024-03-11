@@ -6,7 +6,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rescue4x4.weatherFiles.model.MyLatLang
 import com.example.rescue4x4.weatherFiles.model.forecast.ForecastResult
 import com.example.rescue4x4.weatherFiles.model.weather.WeatherResult
 import com.example.rescue4x4.weatherFiles.network.RetrofitClient

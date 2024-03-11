@@ -1,15 +1,15 @@
 package com.example.rescue4x4
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.provider.ContactsContract
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.rememberScrollableState
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,10 +20,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Share
-import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
@@ -41,32 +44,56 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
 import com.google.android.gms.maps.model.LatLng
-import com.google.maps.android.compose.currentCameraPositionState
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SOSScreen(currentLocation: LatLng) {
-    var showDialog by remember { mutableStateOf(false)}
+    var showDialog2 by remember { mutableStateOf(false)}
+    var showDialog by remember { mutableStateOf(false) }
     val context = LocalContext.current
-    val contactLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.PickContact()
-    ) { contactUri ->
-        contactUri?.let {
-            val intent = Intent(Intent.ACTION_CALL, it)
-            context.startActivity(intent)
+
+
+    fun callEmergency() {
+        val intent = Intent(Intent.ACTION_CALL)
+        intent.data = Uri.parse("tel:0740184743")
+        context.startActivity(intent)
+    }
+
+    fun openContacts() {
+        val intent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
+        startActivity(context, intent, null)
+    }
+
+    val requestPermissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+        if (isGranted) {
+            callEmergency()
         }
-    } // nu merge inca sa suni, ma baga in contacte dar inca nu merge de sunat
-    // trebuie sa cer si permisiuni
+    }
+
+    val requestPermissionLauncherForContacts = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+        if (isGranted) {
+            openContacts()
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -94,19 +121,53 @@ fun SOSScreen(currentLocation: LatLng) {
             modifier = Modifier.padding(vertical = 8.dp),
             style = MaterialTheme.typography.headlineMedium
         )
-        Text(
+        ExpandableText(
             text = stringResource(id = R.string.paragraph),
             modifier = Modifier.padding(horizontal = 16.dp),
             textAlign = TextAlign.Center,
             fontSize = 16.sp
         )
-        Text(
-            text = stringResource(id = R.string.secondparagraph),
-            modifier = Modifier.padding(horizontal = 16.dp),
-            textAlign = TextAlign.Center,
-            fontSize = 16.sp
-        )
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(20.dp))
+
+
+        val persons = remember { mutableListOf<Person>()}
+        ElevatedCard (
+            modifier = Modifier
+                .padding(start = 16.dp, end = 16.dp, bottom = 16.dp, top = 8.dp)
+                .fillMaxWidth()
+                .height(100.dp),
+            shape = MaterialTheme.shapes.medium,
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
+            onClick = {
+             //   sendHelpMessage(context, currentLocation)
+                    showDialog2 = true
+            }
+
+        ){
+            Row (
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(start = 25.dp)
+            ){
+                Image(
+                    painter = painterResource(R.drawable.alert),
+                    contentDescription = "",
+                    contentScale = ContentScale.Fit,
+                )
+                Text(
+                    text = "Send an SOS signal",
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                )
+            }
+        }
+
+        if (showDialog2) {
+            AddPersonDialog(
+                persons = persons,
+                onDismiss = { showDialog2 = false }
+            )
+        }
+
         Row {
             ElevatedCard(
                 modifier = Modifier
@@ -138,13 +199,35 @@ fun SOSScreen(currentLocation: LatLng) {
                 )
             }
 
+            if(showDialog){
+                AlertDialog(
+                    onDismissRequest = { showDialog = false },
+                    confirmButton = {
+                        TextButton(onClick = {
+                                requestPermissionLauncher.launch(android.Manifest.permission.CALL_PHONE)
+                            showDialog = false
+                        }) {
+                            Text("Continue")
+                        }
+                    },
+                    dismissButton = {
+                        TextButton(onClick = { showDialog = false }) {
+                            Text("Cancel")
+                        }
+                    },
+                    title = {Text("You are about to call the emergency service, are you sure?")},
+                )
+            }
+
             ElevatedCard(
                 modifier = Modifier
                     .padding(8.dp),
                 shape = MaterialTheme.shapes.medium,
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.onPrimary),
-                onClick = {}
+                onClick = {
+                    requestPermissionLauncherForContacts.launch(android.Manifest.permission.READ_CONTACTS)
+                }
             ){
                 Text(
                     text = "Call a friend",
@@ -164,27 +247,22 @@ fun SOSScreen(currentLocation: LatLng) {
                         .padding(20.dp)
                 )
             }
-        }
-        if(showDialog){
-            AlertDialog(
-                onDismissRequest = { showDialog = false },
-                confirmButton = {
-                                TextButton(onClick = { /*TODO*/ }) {
-                                    Text("Continue")
-                                    // aici sa fac sa sune la 112
-                                }
-                },
-                dismissButton = {
-                                TextButton(onClick = { showDialog = false }) {
-                                    Text("Cancel")
-                                }
-                },
-                title = {Text("You are about to call the emergency service, are you sure?")},
-            )
-        }
 
+        }
     }
 }
+
+fun sendHelpMessage(context: Context, currentLocation: LatLng) {
+    val locationUrl = "https://maps.google.com/?q=${currentLocation.latitude},${currentLocation.longitude}"
+    val message = "I need help, I'm in a dangerous situation: $locationUrl"
+
+    val intent = Intent(Intent.ACTION_SEND)
+    intent.type = "text/plain"
+    intent.putExtra(Intent.EXTRA_TEXT, message)
+
+    context.startActivity(Intent.createChooser(intent, "Send emergency message"))
+}
+
 @Composable
 fun Share(text: String, context: Context){
     val sendIntent = Intent(Intent.ACTION_SEND).apply {
@@ -200,7 +278,58 @@ fun Share(text: String, context: Context){
     }
 }
 
-@Preview
+@Composable
+fun ExpandableText(
+    text: String,
+    modifier: Modifier = Modifier,
+    textAlign: TextAlign = TextAlign.Start,
+    fontSize: TextUnit = 16.sp,
+    maxLines: Int = 5
+) {
+    var expanded by remember { mutableStateOf(false) }
+
+    Column(modifier = modifier) {
+        Text(
+            text = text,
+            modifier = Modifier.clickable { expanded = !expanded },
+            textAlign = textAlign,
+            fontSize = fontSize,
+            maxLines = if (expanded) Int.MAX_VALUE else maxLines,
+            overflow = TextOverflow.Ellipsis,
+        )
+       Row{
+           if (!expanded) {
+               Icon(
+                   imageVector = Icons.Default.KeyboardArrowDown,
+                   contentDescription = "Show more",
+                   tint = Color.Blue,
+                   modifier = Modifier.clickable { expanded = true }
+               )
+               Text(
+                   text = "Show more",
+                   color = Color.Blue,
+                   modifier = Modifier.clickable { expanded = true }
+               )
+           } else {
+               Icon(
+                   imageVector = Icons.Default.KeyboardArrowUp,
+                   contentDescription = "Show less",
+                   tint = Color.Blue,
+                   modifier = Modifier.clickable { expanded = false }
+               )
+               Text(
+                   text = "Show less",
+                   color = Color.Blue,
+                   modifier = Modifier.clickable { expanded = false }
+               )
+           }
+       }
+    }
+}
+
+
+
+@Preview(showBackground = false)
 @Composable
 fun SOSScreenPreview()
 {
