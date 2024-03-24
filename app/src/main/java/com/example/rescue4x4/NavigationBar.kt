@@ -19,12 +19,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
 
+/*
+un data class e o clasa care are create toate metodele ce teoretic trebuie sa le suprascrii tu
+inclusiv si gettere si settere, e folosita la lista, cel putin asta am facut eu
+ */
 data class NavigationItem(val label: String, val icon: ImageVector)
 
 @Composable
 fun NavigationBarTest(
     navController: NavController
 ){
+    // mutableStateOf e pentru a actualiza starea in timp real a unui element in ui
+    // e folosit pentru a activa recompozitia, iar rememeber e utilizat pentru a retine valoarea
+    // pe toata durata lifecycle lui
     var selectedItem by remember { mutableStateOf("Map") }
     val items = listOf(
         NavigationItem("Map", Icons.Filled.LocationOn),
@@ -34,6 +41,7 @@ fun NavigationBarTest(
 
     Column(modifier = Modifier.fillMaxWidth()) {
         NavigationBar {
+            // are loc o functie lambda pt fiecare item din items sa se faca urmatorul lucru...
             items.forEach {item ->
                 val selected = selectedItem == item.label
                 NavigationBarItem(

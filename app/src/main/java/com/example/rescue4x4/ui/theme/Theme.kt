@@ -6,8 +6,6 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 
-
-
 private val LightColors = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
@@ -72,13 +70,14 @@ private val DarkColors = darkColorScheme(
     outlineVariant = md_theme_dark_outlineVariant,
     scrim = md_theme_dark_scrim,
 )
+
 @Composable
 fun Rescue4x4Theme(
   useDarkTheme: Boolean = isSystemInDarkTheme(),
   content: @Composable() () -> Unit
 ) {
   val colors = if (!useDarkTheme) {
-    LightColors
+    DarkColors // am facut schimbarea asta pentru ca vreau sa fie doar culoriile setate de la dark
   } else {
     DarkColors
   }

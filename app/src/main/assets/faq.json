@@ -1,0 +1,239 @@
+{
+  "faq": [
+    {
+      "question": "What does 'Check Engine' light mean?",
+      "answer": "The 'Check Engine' light indicates a problem with the engine or emission control system. It's usually triggered by a Diagnostic Trouble Code (DTC) stored in the vehicle's computer."
+    },
+    {
+      "question": "Why is my 'Check Engine' light flashing?",
+      "answer": "A flashing 'Check Engine' light typically indicates a severe problem that requires immediate attention, such as a misfire that can damage the catalytic converter. It's best to stop driving and have the vehicle diagnosed as soon as possible."
+    },
+    {
+      "question": "What should I do if my car's OBD2 scanner displays a P0300 code?",
+      "answer": "A P0300 code indicates random or multiple cylinder misfires. Causes can include faulty spark plugs, ignition coils, fuel injectors, or vacuum leaks. Diagnosis and repair are necessary to prevent further damage to the engine."
+    },
+    {
+      "question": "What does an O2 sensor DTC (e.g., P0135) indicate?",
+      "answer": "An O2 sensor DTC like P0135 indicates a malfunction in the oxygen sensor circuit. This can lead to poor fuel economy and increased emissions. Common causes include a faulty sensor, wiring issues, or exhaust leaks."
+    },
+    {
+      "question": "How do I troubleshoot a DTC related to the EVAP system?",
+      "answer": "DTCs related to the EVAP (Evaporative Emission Control) system, such as P0440, typically indicate a leak in the fuel vapor system. This can be caused by a loose gas cap, damaged hoses, or a faulty purge valve. A smoke test or pressure test is often used to locate the leak."
+    },
+    {
+      "question": "What does a DTC related to the catalytic converter mean?",
+      "answer": "DTCs related to the catalytic converter, such as P0420, usually indicate inefficiency in the converter's operation. This can be caused by a faulty converter, but it's important to diagnose underlying issues such as engine misfires or rich fuel mixture that may damage the converter."
+    },
+    {
+      "question": "How do I address a DTC related to the EGR system?",
+      "answer": "DTCs related to the EGR (Exhaust Gas Recirculation) system, like P0401, typically indicate insufficient flow. This can be caused by a clogged EGR valve, carbon buildup in the EGR passages, or a faulty EGR vacuum solenoid. Cleaning or replacing the components may be necessary."
+    },
+    {
+      "question": "What should I do if my car shows a DTC related to the transmission?",
+      "answer": "DTCs related to the transmission, such as P0700, indicate a problem with the transmission control system. This can range from electrical issues to mechanical problems. It's crucial to diagnose and address these issues promptly to prevent transmission damage."
+    },
+    {
+      "question": "Why does my car's OBD2 scanner show a DTC for the ABS system?",
+      "answer": "DTCs related to the ABS (Antilock Brake System), like C0050, indicate a malfunction in the system. This could be due to sensor issues, hydraulic problems, or electrical faults. Proper diagnosis and repair are essential to maintain safe braking performance."
+    },
+    {
+      "question": "What should I do if my car's OBD2 scanner displays a DTC for the airbag system?",
+      "answer": "DTCs related to the airbag system, such as B0100, indicate a problem with the supplemental restraint system (SRS). This could be due to sensor faults, wiring issues, or problems with the airbag module. Prompt attention is necessary to ensure proper airbag deployment in case of an accident."
+    },
+    {
+      "question": "What causes a DTC related to the fuel system?",
+      "answer": "DTCs related to the fuel system, such as P0171 (System Too Lean) or P0172 (System Too Rich), often indicate issues with fuel delivery or air-fuel mixture. Common causes include faulty fuel injectors, vacuum leaks, or a malfunctioning mass airflow sensor (MAF). Proper diagnosis is essential to restore fuel efficiency and engine performance."
+    },
+    {
+      "question": "How do I diagnose a DTC related to ignition system faults?",
+      "answer": "DTCs related to the ignition system, such as P0351 (Ignition Coil A Primary/Secondary Circuit), typically indicate problems with ignition coils, spark plugs, or wiring. Testing individual components and checking for proper voltage and resistance can help pinpoint the issue for repair or replacement."
+    },
+    {
+      "question": "What does a DTC related to the throttle position sensor (TPS) mean?",
+      "answer": "DTCs related to the throttle position sensor (TPS), such as P0121 (TPS Circuit Range/Performance Problem), indicate issues with the sensor's signal to the engine control module (ECM). This can result in poor throttle response or engine hesitation. Cleaning or replacing the TPS may be necessary."
+    },
+    {
+      "question": "How do I address a DTC related to the engine coolant temperature (ECT) sensor?",
+      "answer": "DTCs related to the engine coolant temperature (ECT) sensor, such as P0115 (ECT Sensor Circuit Malfunction), indicate problems with the sensor's circuit or inaccurate temperature readings. This can affect fuel delivery and engine performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What should I do if my car's OBD2 scanner displays a DTC for the knock sensor?",
+      "answer": "DTCs related to the knock sensor, such as P0325 (Knock Sensor Circuit Malfunction), indicate issues with detecting engine knocking or pinging. This can lead to reduced engine power and increased emissions. Checking the sensor's wiring and connections, as well as engine timing, can help diagnose and repair the problem."
+    },
+    {
+      "question": "How do I troubleshoot a DTC related to the intake air temperature (IAT) sensor?",
+      "answer": "DTCs related to the intake air temperature (IAT) sensor, such as P0113 (IAT Sensor Circuit High Input), indicate problems with the sensor's circuit or inaccurate temperature readings. This can affect fuel delivery and engine performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What does a DTC related to the exhaust gas recirculation (EGR) valve mean?",
+      "answer": "DTCs related to the exhaust gas recirculation (EGR) valve, such as P0402 (Exhaust Gas Recirculation Flow Excessive Detected), indicate issues with EGR flow. This can result in increased emissions and engine performance issues. Cleaning or replacing the EGR valve and checking for clogged passages can help resolve the problem."
+    },
+    {
+      "question": "How do I address a DTC related to the evaporative emission control (EVAP) system purge valve?",
+      "answer": "DTCs related to the evaporative emission control (EVAP) system purge valve, such as P0443 (EVAP Purge Control Circuit), indicate problems with the purge valve's circuit or operation. This can cause issues with fuel vapor management and emissions control. Testing the valve's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What should I do if my car's OBD2 scanner displays a DTC for the secondary air injection (AIR) system?",
+      "answer": "DTCs related to the secondary air injection (AIR) system, such as P0410 (Secondary Air Injection System Malfunction), indicate issues with the system's operation. This can affect emissions control and engine performance. Checking for air pump operation, vacuum leaks, and system components can help diagnose and repair the problem."
+    },
+    {
+      "question": "How do I diagnose a DTC related to the camshaft position sensor (CMP)?",
+      "answer": "DTCs related to the camshaft position sensor (CMP), such as P0340 (Camshaft Position Sensor Circuit Malfunction), indicate issues with the sensor's signal to the engine control module (ECM). This can affect ignition timing and fuel delivery. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What causes a DTC related to the crankshaft position sensor (CKP)?",
+      "answer": "DTCs related to the crankshaft position sensor (CKP), such as P0335 (Crankshaft Position Sensor Circuit Malfunction), indicate issues with the sensor's signal to the engine control module (ECM). This can affect ignition timing and fuel delivery. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I address a DTC related to the fuel rail pressure sensor?",
+      "answer": "DTCs related to the fuel rail pressure sensor, such as P0193 (Fuel Rail Pressure Sensor Circuit High Input), indicate problems with the sensor's circuit or inaccurate pressure readings. This can affect fuel delivery and engine performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What should I do if my car's OBD2 scanner displays a DTC for the variable valve timing (VVT) system?",
+      "answer": "DTCs related to the variable valve timing (VVT) system, such as P0010 (Intake Camshaft Position Actuator Circuit/Open), indicate issues with the system's operation. This can affect engine performance and emissions control. Checking for oil pressure, solenoid operation, and system components can help diagnose and repair the problem."
+    },
+    {
+      "question": "How do I diagnose a DTC related to the manifold absolute pressure (MAP) sensor?",
+      "answer": "DTCs related to the manifold absolute pressure (MAP) sensor, such as P0107 (MAP/BARO Circuit Low Input), indicate problems with the sensor's circuit or inaccurate pressure readings. This can affect fuel delivery and engine performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What causes a DTC related to the mass airflow (MAF) sensor?",
+      "answer": "DTCs related to the mass airflow (MAF) sensor, such as P0101 (MAF Sensor Circuit Range/Performance Problem), indicate issues with the sensor's circuit or inaccurate airflow readings. This can affect fuel delivery and engine performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I troubleshoot a DTC related to the powertrain control module (PCM)?",
+      "answer": "DTCs related to the powertrain control module (PCM), such as P0601 (Internal Control Module Memory Check Sum Error), indicate problems with the module's internal memory or operation. This can affect various engine functions and vehicle performance. Resetting the PCM and checking for loose connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What should I do if my car's OBD2 scanner displays a DTC for the fuel injector circuit?",
+      "answer": "DTCs related to the fuel injector circuit, such as P0201 (Injector Circuit/Open - Cylinder 1), indicate problems with the injector's circuit or operation. This can affect fuel delivery and engine performance. Testing the injector's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I diagnose a DTC related to the throttle body?",
+      "answer": "DTCs related to the throttle body, such as P0122 (Throttle Position Sensor/Switch A Circuit Low Input), indicate problems with the sensor's circuit or operation. This can affect throttle response and engine performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What causes a DTC related to the exhaust manifold pressure (EMP) sensor?",
+      "answer": "DTCs related to the exhaust manifold pressure (EMP) sensor, such as P0470 (Exhaust Pressure Sensor Malfunction), indicate problems with the sensor's circuit or inaccurate pressure readings. This can affect exhaust gas recirculation (EGR) and engine performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I address a DTC related to the glow plug control module?",
+      "answer": "DTCs related to the glow plug control module, such as P0380 (Glow Plug/Heater Circuit 'A' Malfunction), indicate problems with the glow plug system's operation. This can affect cold starting and emissions control. Testing the glow plugs and checking for proper voltage to the module can help diagnose and repair the problem."
+    },
+    {
+      "question": "What should I do if my car's OBD2 scanner displays a DTC for the fuel pressure regulator?",
+      "answer": "DTCs related to the fuel pressure regulator, such as P0191 (Fuel Rail Pressure Sensor Circuit Range/Performance), indicate problems with the regulator's operation. This can affect fuel delivery and engine performance. Testing the regulator's vacuum line and inspecting for fuel leaks can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I troubleshoot a DTC related to the turbocharger boost sensor?",
+      "answer": "DTCs related to the turbocharger boost sensor, such as P0299 (Turbo/Supercharger Underboost), indicate issues with the sensor's circuit or inaccurate boost readings. This can affect engine performance and emissions control. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What causes a DTC related to the exhaust temperature sensor?",
+      "answer": "DTCs related to the exhaust temperature sensor, such as P0546 (Exhaust Gas Temperature Sensor Circuit High), indicate problems with the sensor's circuit or inaccurate temperature readings. This can affect exhaust gas recirculation (EGR) and emissions control. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I diagnose a DTC related to the fuel rail pressure sensor?",
+      "answer": "DTCs related to the fuel rail pressure sensor, such as P0192 (Fuel Rail Pressure Sensor Circuit Low Input), indicate problems with the sensor's circuit or inaccurate pressure readings. This can affect fuel delivery and engine performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What should I do if my car's OBD2 scanner displays a DTC for the engine oil pressure sensor?",
+      "answer": "DTCs related to the engine oil pressure sensor, such as P0522 (Engine Oil Pressure Sensor/Switch Circuit Low Voltage), indicate problems with the sensor's circuit or inaccurate pressure readings. This can affect engine lubrication and performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I address a DTC related to the fuel tank pressure sensor?",
+      "answer": "DTCs related to the fuel tank pressure sensor, such as P0452 (Evaporative Emission Control System Pressure Sensor Low Input), indicate problems with the sensor's circuit or inaccurate pressure readings. This can affect fuel vapor management and emissions control. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What causes a DTC related to the coolant temperature sensor?",
+      "answer": "DTCs related to the coolant temperature sensor, such as P0116 (Engine Coolant Temperature Sensor 1 Circuit Range/Performance), indicate problems with the sensor's circuit or inaccurate temperature readings. This can affect fuel delivery and engine performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I troubleshoot a DTC related to the fuel tank pressure sensor?",
+      "answer": "DTCs related to the fuel tank pressure sensor, such as P0453 (Evaporative Emission Control System Pressure Sensor High Input), indicate problems with the sensor's circuit or inaccurate pressure readings. This can affect fuel vapor management and emissions control. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What should I do if my car's OBD2 scanner displays a DTC for the turbocharger wastegate solenoid?",
+      "answer": "DTCs related to the turbocharger wastegate solenoid, such as P0243 (Turbocharger Wastegate Solenoid A Malfunction), indicate problems with the solenoid's operation. This can affect turbocharger boost control and engine performance. Testing the solenoid's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I diagnose a DTC related to the exhaust gas recirculation (EGR) temperature sensor?",
+      "answer": "DTCs related to the exhaust gas recirculation (EGR) temperature sensor, such as P0404 (Exhaust Gas Recirculation Circuit Range/Performance), indicate problems with the sensor's circuit or inaccurate temperature readings. This can affect exhaust gas recirculation (EGR) and emissions control. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What causes a DTC related to the oil level sensor?",
+      "answer": "DTCs related to the oil level sensor, such as P2563 (Oil Level Sensor Circuit Low Voltage), indicate problems with the sensor's circuit or inaccurate readings. This can affect engine lubrication and performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I address a DTC related to the fuel temperature sensor?",
+      "answer": "DTCs related to the fuel temperature sensor, such as P0183 (Fuel Temperature Sensor A Circuit High Input), indicate problems with the sensor's circuit or inaccurate temperature readings. This can affect fuel delivery and engine performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What should I do if my car's OBD2 scanner displays a DTC for the intake manifold runner control (IMRC) valve?",
+      "answer": "DTCs related to the intake manifold runner control (IMRC) valve, such as P2004 (Intake Manifold Runner Control Stuck Open), indicate problems with the valve's operation. This can affect intake airflow and engine performance. Testing the valve's operation and inspecting for binding can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I troubleshoot a DTC related to the fuel temperature sensor?",
+      "answer": "DTCs related to the fuel temperature sensor, such as P0182 (Fuel Temperature Sensor A Circuit Low Input), indicate problems with the sensor's circuit or inaccurate temperature readings. This can affect fuel delivery and engine performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What causes a DTC related to the exhaust back pressure sensor?",
+      "answer": "DTCs related to the exhaust back pressure sensor, such as P0472 (Exhaust Pressure Sensor Low), indicate problems with the sensor's circuit or inaccurate pressure readings. This can affect exhaust gas recirculation (EGR) and engine performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I diagnose a DTC related to the throttle pedal position sensor?",
+      "answer": "DTCs related to the throttle pedal position sensor, such as P2135 (Throttle/Pedal Position Sensor/Switch A/B Voltage Correlation), indicate problems with the sensor's circuit or signal correlation. This can affect throttle response and engine performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What should I do if my car's OBD2 scanner displays a DTC for the exhaust pressure sensor?",
+      "answer": "DTCs related to the exhaust pressure sensor, such as P0471 (Exhaust Pressure Sensor Range/Performance), indicate problems with the sensor's circuit or inaccurate pressure readings. This can affect exhaust gas recirculation (EGR) and engine performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I address a DTC related to the fuel tank pressure control solenoid?",
+      "answer": "DTCs related to the fuel tank pressure control solenoid, such as P0455 (Evaporative Emission Control System Leak Detected), indicate problems with the solenoid's operation. This can affect fuel vapor management and emissions control. Testing the solenoid's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What causes a DTC related to the air charge temperature sensor?",
+      "answer": "DTCs related to the air charge temperature sensor, such as P0112 (Intake Air Temperature Sensor Circuit Low Input), indicate problems with the sensor's circuit or inaccurate temperature readings. This can affect fuel delivery and engine performance. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I troubleshoot a DTC related to the fuel rail pressure relief valve?",
+      "answer": "DTCs related to the fuel rail pressure relief valve, such as P0088 (Fuel Rail/System Pressure - Too High), indicate problems with the valve's operation. This can affect fuel delivery and engine performance. Testing the valve's operation and inspecting for leaks can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What should I do if my car's OBD2 scanner displays a DTC for the exhaust back pressure control valve?",
+      "answer": "DTCs related to the exhaust back pressure control valve, such as P0473 (Exhaust Pressure Control Valve Range/Performance), indicate problems with the valve's operation. This can affect exhaust gas recirculation (EGR) and engine performance. Testing the valve's operation and inspecting for leaks can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I diagnose a DTC related to the diesel particulate filter (DPF)?",
+      "answer": "DTCs related to the diesel particulate filter (DPF), such as P2002 (Diesel Particulate Filter Efficiency Below Threshold Bank 1), indicate problems with filter efficiency. This can lead to reduced engine performance and increased emissions. Testing the DPF pressure sensor and inspecting for soot buildup can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What causes a DTC related to the transmission range sensor?",
+      "answer": "DTCs related to the transmission range sensor, such as P0705 (Transmission Range Sensor Circuit Malfunction), indicate problems with the sensor's circuit or signal. This can affect transmission shifting and vehicle operation. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I address a DTC related to the turbocharger boost pressure sensor?",
+      "answer": "DTCs related to the turbocharger boost pressure sensor, such as P0234 (Turbocharger/Supercharger 'A' Overboost Condition), indicate problems with the sensor's circuit or inaccurate pressure readings. This can affect engine performance and emissions control. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What should I do if my car's OBD2 scanner displays a DTC for the exhaust gas temperature sensor?",
+      "answer": "DTCs related to the exhaust gas temperature sensor, such as P0545 (Exhaust Gas Temperature Sensor Circuit Low Bank 1 Sensor 1), indicate problems with the sensor's circuit or inaccurate temperature readings. This can affect exhaust gas recirculation (EGR) and emissions control. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I troubleshoot a DTC related to the exhaust gas pressure sensor?",
+      "answer": "DTCs related to the exhaust gas pressure sensor, such as P0474 (Exhaust Pressure Sensor Intermittent), indicate problems with the sensor's circuit or signal. This can affect exhaust gas recirculation (EGR) and emissions control. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What causes a DTC related to the exhaust gas temperature (EGT) sensor?",
+      "answer": "DTCs related to the exhaust gas temperature (EGT) sensor, such as P0400 (Exhaust Gas Recirculation Flow Malfunction), indicate problems with the sensor's circuit or inaccurate temperature readings. This can affect exhaust gas recirculation (EGR) and emissions control. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "How do I address a DTC related to the transmission fluid pressure sensor?",
+      "answer": "DTCs related to the transmission fluid pressure sensor, such as P0841 (Transmission Fluid Pressure Sensor/Switch 'A' Circuit Range/Performance), indicate problems with the sensor's circuit or signal. This can affect transmission shifting and vehicle operation. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    },
+    {
+      "question": "What should I do if my car's OBD2 scanner displays a DTC for the diesel exhaust fluid (DEF) level sensor?",
+      "answer": "DTCs related to the diesel exhaust fluid (DEF) level sensor, such as P203D (Reductant Level Sensor Circuit High), indicate problems with the sensor's circuit or signal. This can affect diesel exhaust fluid (DEF) injection and emissions control. Testing the sensor's resistance and inspecting wiring connections can help diagnose and resolve the issue."
+    }
+  ]}

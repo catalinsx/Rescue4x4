@@ -30,7 +30,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -51,17 +50,18 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.rescue4x4.askforhelp.AskForHelp
-import com.example.rescue4x4.diagnosis.FAQScreen
+import com.example.rescue4x4.more.MoreScreen
+import com.example.rescue4x4.more.askforhelp.AskForHelp
+import com.example.rescue4x4.more.diagnosis.DTCScreen
+import com.example.rescue4x4.more.weather.Const.Companion.colorBg1
+import com.example.rescue4x4.more.weather.Const.Companion.colorBg2
+import com.example.rescue4x4.more.weather.Const.Companion.permissions
+import com.example.rescue4x4.more.weather.viewmodel.MainViewModel
+import com.example.rescue4x4.more.weather.viewmodel.STATE
+import com.example.rescue4x4.more.weather.views.ForecastSection
+import com.example.rescue4x4.more.weather.views.WeatherSection
+import com.example.rescue4x4.sos.SOSScreen
 import com.example.rescue4x4.ui.theme.Rescue4x4Theme
-import com.example.rescue4x4.weatherFiles.Const.Companion.colorBg1
-import com.example.rescue4x4.weatherFiles.Const.Companion.colorBg2
-import com.example.rescue4x4.weatherFiles.Const.Companion.permissions
-import com.example.rescue4x4.weatherFiles.viewmodel.MainViewModel
-import com.example.rescue4x4.weatherFiles.viewmodel.STATE
-import com.example.rescue4x4.weatherFiles.views.ForecastSection
-import com.example.rescue4x4.weatherFiles.views.WeatherSection
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -84,6 +84,7 @@ import kotlinx.coroutines.coroutineScope
 
 open class MainActivity : ComponentActivity() {
 
+    // e un client care furnizeaza date de locatie
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationCallBack: LocationCallback
     private var locationRequired: Boolean = false
@@ -135,8 +136,6 @@ open class MainActivity : ComponentActivity() {
                 position = CameraPosition.fromLatLngZoom(currentLocation, 10f)
             }
 
-
-
             locationCallBack = object : LocationCallback() {
                 override fun onLocationResult(p0: LocationResult) {
                     super.onLocationResult(p0)
@@ -175,7 +174,7 @@ open class MainActivity : ComponentActivity() {
                             composable("Weather") {
                                 WeatherForm(context = this@MainActivity, currentLocation = currentLocation)
                             }
-                            composable("Diagnosis") { FAQScreen() }
+                            composable("Diagnosis") { DTCScreen() }
                             composable("AskForHelp") { AskForHelp(currentLocation, this@MainActivity) }
                         }
                         NavigationBarTest(navController = navController)
@@ -184,7 +183,6 @@ open class MainActivity : ComponentActivity() {
             }
         }
     }
-
     private fun fetchWeatherInformation(mainViewModel: MainViewModel, currentLocation: LatLng) {
         mainViewModel.state = STATE.LOADING
         mainViewModel.getWeatherByLocation(currentLocation)
@@ -231,7 +229,7 @@ open class MainActivity : ComponentActivity() {
             if (!mapLoaded) {
                 LinearProgressIndicator(
                     modifier = Modifier.fillMaxWidth(),
-                    color =Color(colorBg2),
+                    color = MaterialTheme.colorScheme.primary,
                 )
             }
             Box(modifier = Modifier.fillMaxSize()) {
@@ -319,14 +317,6 @@ open class MainActivity : ComponentActivity() {
                 Toast.makeText(context, "Permission Denied", Toast.LENGTH_SHORT).show()
             }
         }
-
-        val systemUiController = rememberSystemUiController()
-        DisposableEffect(key1 = true, effect = {
-            systemUiController.isSystemBarsVisible = false //hide status bar
-            onDispose {
-                systemUiController.isSystemBarsVisible = true // show status bar
-            }
-        })
         LaunchedEffect(key1 = currentLocation, block = {
             coroutineScope {
                 if (permissions.all{
