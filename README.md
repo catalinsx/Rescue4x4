@@ -4,15 +4,15 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://i.postimg.cc/cJgfJkVj/maps.png" alt="project-screenshot" width="400" height="400/">
+<img src="https://i.postimg.cc/cJgfJkVj/maps.png" alt="project-screenshot" width="400" height="890/">
 
-<img src="https://i.postimg.cc/vZmWJZXG/sos.png" alt="project-screenshot" width="400" height="400/">
+<img src="https://i.postimg.cc/vZmWJZXG/sos.png" alt="project-screenshot" width="400" height="890/">
 
-<img src="https://i.postimg.cc/0yHpP1HD/weather.png" alt="project-screenshot" width="400" height="400/">
+<img src="https://i.postimg.cc/0yHpP1HD/weather.png" alt="project-screenshot" width="400" height="890/">
 
-<img src="https://i.postimg.cc/T2ZF2BB8/askforhelp.png" alt="project-screenshot" width="400" height="400/">
+<img src="https://i.postimg.cc/T2ZF2BB8/askforhelp.png" alt="project-screenshot" width="400" height="890/">
 
-<img src="https://i.postimg.cc/L6DtQ1ty/diagnosis.png" alt="project-screenshot" width="400" height="400/">
+<img src="https://i.postimg.cc/L6DtQ1ty/diagnosis.png" alt="project-screenshot" width="400" height="890/">
 
   
   
