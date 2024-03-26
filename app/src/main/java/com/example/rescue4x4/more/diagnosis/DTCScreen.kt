@@ -99,6 +99,8 @@ fun DTCScreen() {
             modifier = Modifier.padding(16.dp)
         )
         Spacer(modifier = Modifier.height(16.dp))
+        // let is used to execute the block of code only if the value is not null
+        // is equivalent to an if statement that checks if the value is not null and then executes
         if (dtcDescription != null) {
             dtcDescription?.let { description ->
                 Text(
@@ -145,9 +147,7 @@ fun DisplayMatchingQuestions(matchingQuestions: List<FaqItem>) {
                             text = faqItem.answer,
                             fontSize = 18.sp
                         )
-                        EmergencyQuestion {
-
-                        }
+                        EmergencyQuestion()
                     }
 
                     Row(horizontalArrangement = Arrangement.End) {
@@ -184,7 +184,7 @@ fun DisplayMatchingQuestions(matchingQuestions: List<FaqItem>) {
 }
 
 @Composable
-fun EmergencyQuestion(onClick: () -> Unit) {
+fun EmergencyQuestion() {
     var isChecked by remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.padding(16.dp)) {
@@ -215,7 +215,9 @@ fun EmergencyQuestion(onClick: () -> Unit) {
                   fontWeight = FontWeight.Bold
               )
               Button(
-                  onClick = {},
+                  onClick = {
+                        // i have to implement the sending of a message or something :idk:
+                  },
                   modifier = Modifier.padding(top = 8.dp).fillMaxWidth()
               ) {
                   Icon(

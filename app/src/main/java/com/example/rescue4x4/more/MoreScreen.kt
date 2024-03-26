@@ -51,7 +51,7 @@ import com.example.rescue4x4.R
                     .fillMaxWidth()
                     .padding(8.dp),
                 shape = MaterialTheme.shapes.medium,
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                 onClick = {
                     navController.navigate("Weather")
                 }
@@ -85,7 +85,7 @@ import com.example.rescue4x4.R
                     .fillMaxWidth()
                     .padding(8.dp),
                 shape = MaterialTheme.shapes.medium,
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                 onClick = {
                     navController.navigate("AskForHelp")
                 }
@@ -120,7 +120,7 @@ import com.example.rescue4x4.R
                     .fillMaxWidth()
                     .padding(8.dp),
                 shape = MaterialTheme.shapes.medium,
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                 onClick = {
                     navController.navigate("Diagnosis")
                 }

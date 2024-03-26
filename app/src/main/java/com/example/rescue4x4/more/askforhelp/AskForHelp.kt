@@ -261,7 +261,6 @@ fun AskForHelp(currentLocation: LatLng, context: Context){
     }
 }
 
-// daca nu merge senderu sa l pun intr un object
     fun sendEmail(
         context: Context,
         fullName: String,
@@ -274,7 +273,11 @@ fun AskForHelp(currentLocation: LatLng, context: Context){
         latitude: Double,
         longitude: Double
     ) {
+        // create an intent to send an email
         val emailIntent = Intent(Intent.ACTION_VIEW).apply {
+            // uri is a string of characters that identifies a resource
+            // in this case the uri indicates that the intent is meant to handle emails
+            // the apply function is used to set the properties of the intent
             data = Uri.parse("mailto:")
             putExtra(Intent.EXTRA_EMAIL, arrayOf("help@rescue4x4.ro"))
             putExtra(Intent.EXTRA_SUBJECT, "Help Request from $county")

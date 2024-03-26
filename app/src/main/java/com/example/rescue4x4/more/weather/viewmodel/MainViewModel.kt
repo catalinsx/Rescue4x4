@@ -19,6 +19,19 @@ enum class STATE{
     FAILED
 }
 
+/*
+ ViewModel
+
+ A ViewModel is a part of Android Architecture Components. It is a class that's designed to store
+ and manage UI-related data in a lifecycle conscious way. In simpler terms it is like a container
+    that holds data needed for the UI. It is a storehouse where you keep data and logic that is needed
+    for the UI
+
+    1.Is it used to separate the data from the UI logic. It is used to store and manage UI-related data
+    2.ViewModels are lifecycle aware, meaning they survive configuration changes like screen rotations
+    3. Code reusability
+ */
+
 class MainViewModel : ViewModel() {
     // controlling the state for the view model
     var state by mutableStateOf(STATE.LOADING)
@@ -29,7 +42,10 @@ class MainViewModel : ViewModel() {
     var errorMessage: String by mutableStateOf("")
 
     fun getWeatherByLocation(latLng : LatLng){
-        Log.d("catalin", "api is called here")
+        Log.d("apiweather", "api is called here")
+        // initiates a coroutine within the viewModelScope. Coroutines are light-weight threads
+        // that can be used to perform tasks asynchronously, can suspend execution without blocking
+        // the main thread. Here in this case, we are making a network call to get the weather info
         viewModelScope.launch {
             state = STATE.LOADING
             val apiService = RetrofitClient.getInstance()

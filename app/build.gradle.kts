@@ -66,7 +66,7 @@ dependencies {
 
 
     // places api
-    implementation ("com.google.android.libraries.places:places:3.3.0")
+    implementation("com.google.android.libraries.places:places:3.3.0")
 
     //navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")

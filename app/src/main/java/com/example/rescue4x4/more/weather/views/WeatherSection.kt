@@ -32,9 +32,7 @@ import com.guru.fontawesomecomposelib.FaIcons
 @Composable
 fun WeatherSection(weatherResponse: WeatherResult) {
 
-    /*
-    Title section
-     */
+    // title
 
     var title = ""
     if(!weatherResponse.name.isNullOrEmpty()){
@@ -48,19 +46,13 @@ fun WeatherSection(weatherResponse: WeatherResult) {
         }
     }
 
-    /*
-     Subtitle section
-      */
+    // subtitle
 
     var subTitle = ""
     val dateVal = (weatherResponse.dt ?: 0)
     subTitle = if(dateVal == 0) LOADING else timeStampToHumanDate(dateVal.toLong(), "dd-MM-yyyy")
 
-
-    /*
-    Icon
-     */
-
+    // temp
     var icon = ""
     var description = ""
     weatherResponse.weather.let{
@@ -70,31 +62,25 @@ fun WeatherSection(weatherResponse: WeatherResult) {
         }
     }
 
-    /* temp */
+  // temp
     var temp = ""
     weatherResponse.main?.let {
         temp =  "${it.temp?.toInt()} °C"
     }
 
-    /*
-    Wind
-     */
+ // wind
     var wind = ""
     weatherResponse.wind.let {
         wind = if(it == null) LOADING else "${it.speed}"
     }
 
-    /*
-   Clouds
-    */
+   // clouds
     var clouds = ""
     weatherResponse.clouds.let {
         clouds = if(it == null) LOADING else "${it.all}%"
     }
 
-    /*
-   Snow
-    */
+  // snow
     var snow = ""
     weatherResponse.snow.let {
         snow = if(it!!.d1h == null) NA else "${it.d1h}"
