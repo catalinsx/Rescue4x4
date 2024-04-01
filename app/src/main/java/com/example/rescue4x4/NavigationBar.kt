@@ -49,8 +49,10 @@ fun NavigationBarTest(
                     label = { Text(item.label) },
                     selected = selected,
                     onClick = {
-                        selectedItem = item.label
-                        navController.navigate(item.label)
+                        if (!selected) {
+                            selectedItem = item.label
+                            navController.navigate(item.label)
+                        }
                     }
                 )
             }

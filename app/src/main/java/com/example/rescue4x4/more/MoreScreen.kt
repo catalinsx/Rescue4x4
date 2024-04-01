@@ -148,6 +148,40 @@ import com.example.rescue4x4.R
                     )
                 }
             }
+            ElevatedCard(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                shape = MaterialTheme.shapes.medium,
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                onClick = {
+                    navController.navigate("Supply")
+                }
+            ) {
+                Box(
+                    modifier = Modifier.padding(8.dp),
+                ) {
+
+                    Image(
+                        painter = painterResource(R.drawable.notepad),
+                        contentDescription = "",
+                        contentScale = ContentScale.Fit,
+                        modifier = Modifier.clip(RoundedCornerShape(16.dp))
+                    )
+                    Text(
+                        text = "Supply List",
+                        modifier = Modifier
+                            .align(Alignment.CenterStart)
+                            .padding(16.dp),
+                        style = MaterialTheme.typography.headlineSmall,
+                        color = Color.Black,
+                        fontWeight = FontWeight.SemiBold,
+                        fontStyle = FontStyle.Italic,
+                        fontSize = 25.sp
+
+                    )
+                }
+            }
         }
     }
 

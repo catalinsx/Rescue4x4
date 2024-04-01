@@ -2,6 +2,7 @@ package com.example.rescue4x4
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -39,6 +40,22 @@ import com.google.maps.android.compose.CameraPositionState
 import com.google.maps.android.compose.rememberCameraPositionState
 
 
+/*
+Context
+prima si prima data un context e doar o instanta de clasa
+val context: Context
+
+Context in linii mari e doar un superclass care inglobeaza alte clase la randul ei
+Object -> ContextWrapper -> ContextThemeWrapper -> Activity
+						 -> Service
+						 -> Application
+
+
+- contextul poate fi asimilat ca un fel de bridge intre aplicatia mea si restul sistemului de operare,
+ un middle man folosit ca exemplul urmator: E nevoie de context daca de exemplu folosesc un intent sa deschid youtubeul,
+  contextul e middle manu intre deschdierea de youtube si aplicatia mea
+- e necesar atunci cand aplicatia mea trebuie sa comunice cu celelalte componente ale Androidului
+ */
 class MainActivity : ComponentActivity() {
 
     private var isLocationInitialized by mutableStateOf(false)
@@ -66,10 +83,19 @@ class MainActivity : ComponentActivity() {
                 position = CameraPosition.fromLatLngZoom(currentLocation, 10f)
             }
 
-            locationCallBack = object : LocationCallback() {
+            // defining the locationCallback to handle location updates
+            // LocationCallBack class is a part of Android Location Services API
+
+            locationCallBack = object: LocationCallback() {
+                // overriding onLocationResult to handle location updates
+                // it is called when new location updataes are available
+                // p0 is just a variable name, used by convetion, it stands for parameter 0
                 override fun onLocationResult(p0: LocationResult) {
                     super.onLocationResult(p0)
+                    // iterate through received locations
+                    // each interation represents one location found by device
                     for (location in p0.locations) {
+                        // update current location
                         currentLocation = LatLng(location.latitude, location.longitude)
                         if(!isLocationInitialized){
                             cameraPositionState.position = CameraPosition.fromLatLngZoom(currentLocation, 12f)
@@ -93,6 +119,7 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.weight(1f)
                         ) {
                             composable("Map") {
+                                Log.d("composable", "Map")
                                 LocationScreen(
                                     context = this@MainActivity,
                                     currentLocation = currentLocation,
@@ -106,8 +133,14 @@ class MainActivity : ComponentActivity() {
                                 )
 
                             }
-                            composable("SOS") { SOSScreen(currentLocation) }
-                            composable("More") { MoreScreen(navController) }
+                            composable("SOS") {
+                                Log.d("composable", "SOS")
+                                SOSScreen(currentLocation) }
+                            composable("More") {
+                                Log.d("composable", "More")
+                                MoreScreen(navController)
+
+                            }
                             composable("Weather") {
                                 WeatherForm(context = this@MainActivity, currentLocation = currentLocation)
                             }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "946344013088",
+    "project_id": "rescue4x4-74966",
+    "storage_bucket": "rescue4x4-74966.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946344013088:android:58752994bbe898478a7b45",
+        "android_client_info": {
+          "package_name": "com.example.rescue4x4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA85W4mVsm6mHsTgm-rf8KoYWxhxU_kmIw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

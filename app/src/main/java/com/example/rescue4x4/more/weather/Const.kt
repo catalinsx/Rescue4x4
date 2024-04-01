@@ -6,7 +6,7 @@ class Const {
             android.Manifest.permission.ACCESS_COARSE_LOCATION,
             android.Manifest.permission.ACCESS_FINE_LOCATION
         )
-        const val openWeatherApiKey = "764d230584a4f1553b662480c30f7d58"
+        const val openWeatherApiKey = "api key here"
 
         const val colorBg1 = 0xFF08203E
         const val colorBg2 = 0xFF557C93

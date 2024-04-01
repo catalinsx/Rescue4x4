@@ -1,10 +1,5 @@
 package com.example.rescue4x4.sos
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.provider.ContactsContract
-import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -26,9 +21,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -55,14 +48,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat.startActivity
 import com.example.rescue4x4.R
 import com.example.rescue4x4.sos.Utils.Companion.Share
 import com.example.rescue4x4.sos.Utils.Companion.callEmergency
 import com.example.rescue4x4.sos.Utils.Companion.openContacts
 import com.example.rescue4x4.sos.Utils.Companion.sendHelpMessage
 import com.google.android.gms.maps.model.LatLng
-import java.io.OutputStream
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -115,8 +106,10 @@ fun SOSScreen(currentLocation: LatLng) {
             fontSize = 32.sp
         )
         Share(
-            text = "Here is my location data: Latitude: ${currentLocation.latitude} /" +
-                    " Longitude: ${currentLocation.longitude}",
+            text =  "Here is my location data: Latitude: ${currentLocation.latitude} /" +
+                    " Longitude: ${currentLocation.longitude}" +
+                    " Click on the link to see my location on Google Maps, send this to someone: " +
+                    "https://maps.google.com/?q=${currentLocation.latitude},${currentLocation.longitude}",
             context = context)
         Spacer(modifier = Modifier.height(20.dp))
         Text(
